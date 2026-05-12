@@ -5,13 +5,12 @@ import csv
 import os
 from datetime import datetime
 
-# Initialize the FastAPI app
+
 app = FastAPI()
 
-# Allow the frontend (HTML) to communicate with this backend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # Allows all origins (good for local testing)
+    allow_origins=["*"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -25,21 +24,19 @@ class ContactForm(BaseModel):
     country: str
     course: str
 
-# Define the API Endpoint
+
 @app.post("/api/contact-submit")
 def save_form_to_file(form_data: ContactForm):
     # Name of the file where we will store the data
     filename = "form_submissions.csv"
     
-    # Check if the file already exists so we know if we need to write headers
+   
     file_exists = os.path.isfile(filename)
     
     try:
-        # Open the file in "append" mode ('a') so it adds to the bottom
         with open(filename, mode='a', newline='', encoding='utf-8') as file:
             writer = csv.writer(file)
             
-            # If the file is brand new, write the column headers first
             if not file_exists:
                 writer.writerow(["Timestamp", "Name", "Email", "Phone", "Country", "Course"])
             

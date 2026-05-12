@@ -1,8 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     
-    // ==========================================
-    // 1. Accordion Logic for Contact Us in Footer
-    // ==========================================
+ 
     const accordionItems = document.querySelectorAll(".accordion-item");
 
     accordionItems.forEach(item => {
@@ -34,9 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // ==========================================
-    // 2. Form Submission Logic 
-    // ==========================================
+    //  Form Submission Logic 
     const form = document.querySelector(".lead-form-card form");
     
     if (form) {
@@ -68,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 submitBtn.style.opacity = "0.7";
                 submitBtn.style.cursor = "not-allowed";
 
-                // Send the data to your Python backend
+                // Send the data to Python backend
                 const response = await fetch("http://127.0.0.1:8000/api/contact-submit", {
                     method: "POST",
                     headers: {
